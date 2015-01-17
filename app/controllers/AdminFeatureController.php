@@ -42,7 +42,7 @@ class AdminFeatureController extends \BaseController {
 		$feature->name = Input::get('name');
 		$feature->save();
 
-		Flash::success('Project added !');
+		Flash::success('Fonctionnality added!');
 		return Redirect::back();
 	}
 

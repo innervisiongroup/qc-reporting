@@ -11,6 +11,8 @@ Route::resource('session', 'SessionController');
 # Projects
 Route::resource('project', 'ProjectController');
 
+# Reports
+Route::resource('report', 'ReportController');
 
 # Admin !
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function() {

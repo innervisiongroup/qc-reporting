@@ -18,7 +18,7 @@ class CreateTestsTable extends Migration {
 			$table->integer('report_id');
 			$table->integer('feature_id');
 			$table->integer('platform_id');
-			$table->boolean('functionnal');
+			$table->boolean('functional');
 			$table->timestamps();
 		});
 	}

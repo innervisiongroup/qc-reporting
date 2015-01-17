@@ -1,6 +1,6 @@
 <?php
 
-class ProjectController extends \BaseController {
+class ReportController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -31,7 +31,32 @@ class ProjectController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$project = Project::find(Input::get('project_id'));
+
+		$report = new Report;
+		$report->project_id = $project->id;
+		$report->user_id = Auth::id();
+		$report->version_id = '';
+		$report->platform_version = Input::get('os');
+		$report->status = 'Sent';
+		$report->save();
+
+		foreach ($project->features as $feature) {
+			if (Input::has($feature->id)) {
+				foreach (Input::get($feature->id) as $platform_id) {
+					$test = new Test;
+					$test->report_id = $report->id;
+					$test->feature_id = $feature->id;
+					$test->platform_id = $platform_id;
+					$test->functional = true;
+					$test->save();
+				}
+			}
+		}
+
+		Flash::success('Reporting has been sent!');
+		return Redirect::route('report.show', $report->id);
+
 	}
 
 
@@ -43,9 +68,9 @@ class ProjectController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$project = Project::find($id);
-		return View::make('project.show')
-			->with('project', $project);
+		$report = Report::find($id);
+		return View::make('report.show')
+			->with('report', $report);
 	}
 
 

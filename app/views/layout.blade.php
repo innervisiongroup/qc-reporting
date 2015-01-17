@@ -36,8 +36,8 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav pull-right">
-                        <li class="{{ Request::is('admin') ? 'active' : '' }}">
-                            <a href="#">qsd</a>
+                        <li class="{{ Request::is('/') ? 'active' : '' }}">
+                            <a href="{{ URL::route('home') }}">Home</a>
                         </li>
                         
                         @if (Auth::check())
