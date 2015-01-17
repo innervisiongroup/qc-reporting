@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'UBMegLs6nprhZTkroM5jeRZjO6CJSNwg',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -121,6 +121,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider',
 
 	),
 
@@ -188,6 +191,8 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'PDF'             => 'Barryvdh\DomPDF\Facade',
+		'Flash' => 'Laracasts\Flash\Flash',
 
 	),
 

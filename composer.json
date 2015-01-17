@@ -9,7 +9,7 @@
 		"way/generators": "2.*",
 		"guzzlehttp/guzzle": "~4.0",
 		"barryvdh/laravel-dompdf": "0.4.*",
-		"laracasts/flash": "~1.0",
+		"laracasts/flash": "~1.0"
 	},
 	"autoload": {
 		"classmap": [
