@@ -1,14 +1,12 @@
 <?php
 
-# Pages
-Route::get('/', array('as' => 'home', 'uses'=>'PageController@index'));
-
 # Logs
 Route::get('login', ['as' => 'login', 'uses' => 'SessionController@create']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
 Route::resource('session', 'SessionController');
 
 Route::group(array('before'=>'auth'), function() {
+    Route::get('/', array('as' => 'home', 'uses'=>'ProjectController@index'));
     # Projects
     Route::resource('project', 'ProjectController');
 
