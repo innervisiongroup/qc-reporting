@@ -8,11 +8,13 @@ Route::get('login', ['as' => 'login', 'uses' => 'SessionController@create']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
 Route::resource('session', 'SessionController');
 
-# Projects
-Route::resource('project', 'ProjectController');
+Route::group(array('before'=>'auth'), function() {
+    # Projects
+    Route::resource('project', 'ProjectController');
 
-# Reports
-Route::resource('report', 'ReportController');
+    # Reports
+    Route::resource('report', 'ReportController');
+});
 
 # Admin !
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function() {
@@ -20,5 +22,4 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function() {
     Route::resource('feature', 'AdminFeatureController');
     Route::resource('version', 'AdminVersionController');
     Route::resource('user', 'AdminUserController');
-
 });
