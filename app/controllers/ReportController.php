@@ -39,6 +39,7 @@ class ReportController extends \BaseController {
 		$report->version_id = '';
 		$report->platform_version = Input::get('os');
 		$report->status = 'Sent';
+		$report->note = Input::get('note');
 		$report->save();
 
 		foreach ($project->features as $feature) {

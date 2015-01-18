@@ -62,6 +62,13 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        {{ Form::label('note', 'Add a note to your report') }}
+                        {{ Form::textarea('note', null, ['class'=>'form-control']) }}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
                     <div class="col-md-2 col-md-offset-5">
                         {{ Form::submit('Send Report', ['class'=>'btn btn-danger btn-block']) }}
                     </div>

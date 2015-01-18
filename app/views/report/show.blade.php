@@ -54,6 +54,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <blockquote>
+                        <p>{{ $report->note }}</p>
+                        <footer>{{ $report->user->name }}</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-2 col-md-offset-5">
                     <a href="#" onclick="window.print()" class="btn btn-block btn-info print">Print</a>
                 </div>
