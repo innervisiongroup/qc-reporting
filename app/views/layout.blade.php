@@ -91,7 +91,7 @@
             @yield('content')
         </div>
 
-        <footer>
+        <footer style="padding-top: 100px;">
             <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                 <div class="container-fluid">
                     <div class="row">

@@ -7,6 +7,7 @@ Route::resource('session', 'SessionController');
 
 Route::group(array('before'=>'auth'), function() {
     Route::get('/', array('as' => 'home', 'uses'=>'ProjectController@index'));
+
     # Projects
     Route::resource('project', 'ProjectController');
 
