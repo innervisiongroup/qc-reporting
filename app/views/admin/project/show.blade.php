@@ -74,7 +74,7 @@
             @if (count($project->reports))
                 <ul>
                     @foreach ($project->reports as $report)
-                        <li>{{ $report->created_at }}</li>
+                        <li>{{ link_to_route('report.show', 'From '.$report->user->first_name.' the '.date("d/m/Y",strtotime($report->created_at)), $report->id)}}</li>
                     @endforeach
                 </ul>
             @else
