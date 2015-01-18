@@ -1,5 +1,13 @@
 @extends('layout')
 
+@section('styles')
+    <style>
+        a.link{
+            color: #000;
+        }
+    </style>
+@stop
+
 @section('content')
     <div class="page-header">
         <h1>
@@ -25,7 +33,7 @@
                     @if (count($project->features))
                         <ul>
                             @foreach ($project->features as $feature)
-                                <li>{{ $feature->name }}</li>
+                                <li>{{ link_to_route('admin.feature.edit', $feature->name, $feature->id, ['class' => 'link']) }}</li>
                             @endforeach
                         </ul>
                     @else
@@ -51,8 +59,8 @@
                 <div class="col-md-12">
                     @if (count($project->versions))
                         <ul>
-                            @foreach ($project->versions as $feature)
-                                <li>{{ $feature->name }}</li>
+                            @foreach ($project->versions as $version)
+                                <li>{{ $version->name }}</li>
                             @endforeach
                         </ul>
                     @else
@@ -65,8 +73,8 @@
             <h2>Reports</h2>
             @if (count($project->reports))
                 <ul>
-                    @foreach ($project->reports as $feature)
-                        <li>{{ $feature->name }}</li>
+                    @foreach ($project->reports as $report)
+                        <li>{{ $report->created_at }}</li>
                     @endforeach
                 </ul>
             @else

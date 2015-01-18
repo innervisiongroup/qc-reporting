@@ -67,7 +67,9 @@ class AdminFeatureController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$feature = Feature::find($id);
+		return View::make('admin.feature.edit')
+			->with('feature', $feature);
 	}
 
 
@@ -79,7 +81,12 @@ class AdminFeatureController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$feature = Feature::find($id);
+		$feature->name = Input::get('name');
+		$feature->save();
+
+		Flash::success('Fonctionnality saved!');
+		return Redirect::route('admin.project.show', $feature->project_id);
 	}
 
 
