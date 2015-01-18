@@ -12,7 +12,7 @@
             <div class="row">
                 {{ Form::open(['route'=>'admin.feature.store']) }}        
                     <div class="col-md-9">
-                        {{ Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Add a fonctionnality to test']) }}
+                        {{ Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Add a fonctionnality to test', 'autofocus']) }}
                     </div>
                     <div class="col-md-3">
                         {{ Form::submit('Add', ['class'=>'btn btn-primary']) }}
