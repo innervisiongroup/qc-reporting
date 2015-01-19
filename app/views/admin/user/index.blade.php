@@ -1,5 +1,13 @@
 @extends('layout')
 
+@section('styles')
+<style>
+    td form{
+        display: inline;
+    }
+</style>
+@stop
+
 @section('content')
     <div class="row">
         {{ Form::open(['route'=>'admin.user.store']) }}
@@ -31,6 +39,7 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +56,14 @@
                                 </td>
                                 <td>
                                     {{ $user->email }}
+                                </td>
+                                <td>
+                                    <a href="{{ URL::route('admin.user.edit', $user->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+                                    @if (!$user->superuser)
+                                        {{ Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) }}
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        {{ Form::close() }}
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

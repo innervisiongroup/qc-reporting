@@ -71,7 +71,9 @@ class AdminUserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = User::find($id);
+		return View::make('admin.user.edit')
+			->with('user', $user);
 	}
 
 
@@ -83,7 +85,13 @@ class AdminUserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = User::find($id);
+		$user->first_name = Input::get('first_name');
+		$user->last_name  = Input::get('last_name');
+		$user->save();
+		
+		Flash::success('User correctly saved');
+		return Redirect::back();
 	}
 
 
@@ -95,7 +103,10 @@ class AdminUserController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$user = User::find($id);
+		$user->delete();
+		Flash::success('User correctly deleted');
+		return Redirect::back();
 	}
 
 
