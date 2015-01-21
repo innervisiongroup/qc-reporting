@@ -9,7 +9,7 @@ class AdminProjectController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projects = Project::orderBy('name')->get();
+		$projects = Project::withTrashed()->orderBy('name')->get();
 		return View::make('admin.project.index')
 			->with('projects', $projects);
 	}
@@ -87,6 +87,12 @@ class AdminProjectController extends \BaseController {
 		//
 	}
 
+	public function enable($id)
+	{
+		$project = Project::onlyTrashed()->find($id);
+		$project->restore();
+		return Redirect::back();
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -96,7 +102,9 @@ class AdminProjectController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$project = Project::find($id);
+		$project->delete();
+		return Redirect::back();
 	}
 
 

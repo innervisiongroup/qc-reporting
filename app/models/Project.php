@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class Project extends \Eloquent {
+    use SoftDeletingTrait;
+
 	protected $fillable = [];
 
     public static $rules = [

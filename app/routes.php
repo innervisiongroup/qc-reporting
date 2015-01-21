@@ -18,6 +18,7 @@ Route::group(array('before'=>'auth'), function() {
 # Admin !
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function() {
     Route::resource('project', 'AdminProjectController');
+    Route::get('project/{id}/enable', ['as'=>'admin.project.enable', 'uses'=>'AdminProjectController@enable']);
     Route::resource('feature', 'AdminFeatureController');
     Route::resource('version', 'AdminVersionController');
     Route::resource('user', 'AdminUserController');
