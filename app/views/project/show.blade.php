@@ -22,7 +22,11 @@
                                 {{ Form::label('os', 'Operating System') }}
                             </div>
                             <div class="col-md-7">
-                                {{ Form::select('os', ['Mac OS'=>'Mac OS', 'Windows 7'=>'Windows 7', 'Windows 8'=>'Windows 8', 'Ubuntu'=>'Ubuntu', 'Debian'=>'Debian'], null, ['class'=>'form-control']) }}
+                                @if (!$project->is_mobile)
+                                    {{ Form::select('os', ['Mac OS'=>'Mac OS', 'Windows 7'=>'Windows 7', 'Windows 8'=>'Windows 8', 'Ubuntu'=>'Ubuntu', 'Debian'=>'Debian'], null, ['class'=>'form-control']) }}
+                                @else
+                                    {{ Form::select('os', ['Android 4.4'=>'Android 4.4', 'Android 4.3'=>'Android 4.3', 'Android 4.2'=>'Android 4.2'], null, ['class'=>'form-control']) }}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -39,22 +43,38 @@
                                 <thead>
                                     <tr>
                                         <th>Fonctionnality to Test</th>
-                                        @foreach (Platform::all() as $platform)
-                                            <th>{{ $platform->name }}</th>
-                                        @endforeach
+                                        @if ($project->is_mobile)
+                                            <th>
+                                                Android Phone
+                                            </th>
+                                        @else
+                                            @foreach (Platform::all() as $platform)
+                                                <th>{{ $platform->name }}</th>
+                                            @endforeach
+                                        @endif
                                     </tr>
                                 </thead>
-                                @foreach ($project->features as $feature)
-                                    <tr>
-                                        <th scope="row">{{ $feature->name }}</th>
-                                        @foreach (Platform::all() as $platform)
-                                            <td>
-                                                {{ Form::checkbox($feature->id.'[]', $platform->id, false, ['id'=>$feature->id.$platform->id]) }}
-                                                <label for="{{$feature->id.$platform->id}}" class="check-box"></label>
-                                            </td>
-                                        @endforeach
-                                    </tr>
-                                @endforeach
+    
+                                <tbody>
+                                    @foreach ($project->features as $feature)
+                                        <tr>
+                                            <th scope="row">{{ $feature->name }}</th>
+                                            @if ($project->is_mobile)
+                                                <td>
+                                                    {{ Form::checkbox($feature->id.'[]', 'android', false, ['id'=>$feature->id.'android']) }}
+                                                    <label for="{{$feature->id}}android" class="check-box"></label>
+                                                </td>
+                                            @else
+                                                @foreach (Platform::all() as $platform)
+                                                    <td>
+                                                        {{ Form::checkbox($feature->id.'[]', $platform->id, false, ['id'=>$feature->id.$platform->id]) }}
+                                                        <label for="{{$feature->id.$platform->id}}" class="check-box"></label>
+                                                    </td>
+                                                @endforeach
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         @else
                             No fonctionnalities at the moment for this project.

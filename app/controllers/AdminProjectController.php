@@ -42,6 +42,7 @@ class AdminProjectController extends \BaseController {
 		$project = new Project;
 		$project->name = Input::get('name');
 		$project->url = Input::get('url');
+		$project->is_mobile = Input::get('is_mobile');
 		$project->save();
 
 		Flash::success('Project added !');

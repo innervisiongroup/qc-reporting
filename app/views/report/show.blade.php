@@ -30,24 +30,41 @@
                         <thead>
                             <tr>
                                 <th>Fonctionnality to Test</th>
-                                @foreach (Platform::all() as $platform)
-                                    <th>{{ $platform->name }}</th>
-                                @endforeach
+                                @if ($report->project->is_mobile)
+                                    <th>
+                                        Android Phone
+                                    </th>
+                                @else
+                                    @foreach (Platform::all() as $platform)
+                                        <th>{{ $platform->name }}</th>
+                                    @endforeach
+                                @endif
                             </tr>
                         </thead>
                         @foreach ($report->project->features as $feature)
                             <tr>
                                 <th scope="row">{{ $feature->name }}</th>
-                                @foreach (Platform::all() as $platform)
+                                @if ($report->project->is_mobile)
                                     <td>
-                                        @if (!is_null(Test::where('report_id', $report->id)->where('feature_id', $feature->id)->where('platform_id', $platform->id)->first()))
-                                            {{ Form::checkbox($feature->id.'[]', $platform->id, true, ['id'=>$feature->id.$platform->id, 'disabled', 'checked']) }}
+                                        @if (!is_null(Test::where('report_id', $report->id)->where('feature_id', $feature->id)->where('platform_id', 0)->first()))
+                                            {{ Form::checkbox($feature->id.'[]', 'android', true, ['id'=>$feature->id.'android',  'disabled', 'checked']) }}
                                         @else
-                                            {{ Form::checkbox($feature->id.'[]', $platform->id, false, ['id'=>$feature->id.$platform->id, 'disabled', 'unchecked']) }}
+                                            {{ Form::checkbox($feature->id.'[]', 'android', false, ['id'=>$feature->id.'android',  'disabled', 'unchecked']) }}
                                         @endif
-                                        <label for="{{$feature->id.$platform->id}}" class="check-box"></label>
+                                        <label for="{{$feature->id}}android" class="check-box"></label>
                                     </td>
-                                @endforeach
+                                @else
+                                    @foreach (Platform::all() as $platform)
+                                        <td>
+                                            @if (!is_null(Test::where('report_id', $report->id)->where('feature_id', $feature->id)->where('platform_id', $platform->id)->first()))
+                                                {{ Form::checkbox($feature->id.'[]', $platform->id, true, ['id'=>$feature->id.$platform->id, 'disabled', 'checked']) }}
+                                            @else
+                                                {{ Form::checkbox($feature->id.'[]', $platform->id, false, ['id'=>$feature->id.$platform->id, 'disabled', 'unchecked']) }}
+                                            @endif
+                                            <label for="{{$feature->id.$platform->id}}" class="check-box"></label>
+                                        </td>
+                                    @endforeach
+                                @endif
                             </tr>
                         @endforeach
                     </table>

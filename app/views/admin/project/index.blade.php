@@ -9,6 +9,13 @@
             <div class="col-md-3">
                 {{ Form::text('url', null, ['class'=>'form-control', 'placeholder'=>'URL']) }}
             </div>
+            <div class="col-md-2">
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('is_mobile', true) }} Mobile App
+                    </label>
+                </div>
+            </div>
             <div class="col-md-3">
                 {{ Form::submit('Add New Project', ['class'=>'btn btn-primary']) }}
             </div>
