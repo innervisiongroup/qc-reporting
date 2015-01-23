@@ -35,6 +35,7 @@ class SessionController extends \BaseController {
 		if (Auth::attempt(Input::only('email', 'password'))) {
 			return Redirect::intended('/');
 		}
+		return Redirect::back()->withErrors(['Email or password is incorrect.']);
 	}
 
 	/**
