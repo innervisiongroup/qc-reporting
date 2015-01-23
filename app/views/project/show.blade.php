@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="/css/checkbox.css">
+    <link rel="stylesheet" href="/plugins/trumbowyg/dist/ui/trumbowyg.min.css">
 @stop
 
 @section('content')
@@ -96,4 +97,14 @@
             {{ Form::close() }}
         </div>
     </div>
+@stop
+
+
+@section('scripts')
+    <script src="/plugins/trumbowyg/dist/trumbowyg.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $('#note').trumbowyg();
+        });
+    </script>
 @stop
