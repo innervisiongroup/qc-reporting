@@ -58,7 +58,7 @@ class AdminProjectController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$project = Project::find($id);
+		$project = Project::withTrashed()->find($id);
 
 		return View::make('admin.project.show')
 			->with('project', $project);
@@ -73,7 +73,7 @@ class AdminProjectController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$project = Project::find($id);
+		$project = Project::withTrashed()->find($id);
 
 		return View::make('admin.project.edit')
 			->with('project', $project);
@@ -94,7 +94,7 @@ class AdminProjectController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput(Input::all());
 		}
 
-		$project            = Project::find($id);
+		$project            = Project::withTrashed()->find($id);
 		$project->name      = Input::get('name');
 		$project->url       = Input::get('url');
 		$project->is_mobile = Input::get('is_mobile');
