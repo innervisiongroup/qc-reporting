@@ -73,7 +73,10 @@ class AdminProjectController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$project = Project::find($id);
+
+		return View::make('admin.project.edit')
+			->with('project', $project);
 	}
 
 
@@ -85,7 +88,20 @@ class AdminProjectController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validator = Validator::make(Input::all(), Project::$rules);
+
+		if ($validator->fails()) {
+			return Redirect::back()->withErrors($validator)->withInput(Input::all());
+		}
+
+		$project            = Project::find($id);
+		$project->name      = Input::get('name');
+		$project->url       = Input::get('url');
+		$project->is_mobile = Input::get('is_mobile');
+		$project->save();
+
+		Flash::success('Project updated !');
+		return Redirect::back();
 	}
 
 	public function enable($id)

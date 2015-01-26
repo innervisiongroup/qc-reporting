@@ -12,6 +12,11 @@
     <div class="page-header">
         <h1>
             {{ $project->name }}
+            <div class="pull-right">
+                <a href="{{ URL::route('admin.project.edit', $project->id) }}" class="btn btn-info">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </div>
         </h1>
     </div>
     <div class="row">
