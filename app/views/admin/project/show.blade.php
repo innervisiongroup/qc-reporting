@@ -78,7 +78,7 @@
             <h2>Reports</h2>
             @if (count($project->reports))
                 <ul>
-                    @foreach ($project->reports as $report)
+                    @foreach ($project->reports()->latest()->get() as $report)
                         <li>{{ link_to_route('report.show', 'From '.$report->user->first_name.' the '.date("d/m/Y",strtotime($report->created_at)), $report->id)}}</li>
                     @endforeach
                 </ul>
