@@ -3,6 +3,9 @@
 @section('styles')
     <link rel="stylesheet" href="/css/checkbox.css">
     <link rel="stylesheet" href="/plugins/trumbowyg/dist/ui/trumbowyg.min.css">
+    <style>
+    .trumbowyg-box, .trumbowyg-editor{margin: 0;}
+    </style>
 @stop
 
 @section('content')
