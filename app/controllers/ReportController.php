@@ -41,6 +41,23 @@ class ReportController extends \BaseController {
 		$report->status = 'Sent';
 		$report->note = Input::get('note');
 		$report->save();
+	
+		if (Input::hasFile('images')) {
+			
+			$files = Input::file('images');
+			
+			foreach($files as $file) {
+				$destinationPath = public_path().'/uploads/';
+				$filename        = str_random(6) . '_' . $file->getClientOriginalName();
+				$uploadSuccess   = $file->move($destinationPath, $filename);
+
+				$image = new Image;
+				$image->report_id = $report->id;
+				$image->filename = $filename;
+				$image->save();
+			}
+		}
+
 
 		foreach ($project->features as $feature) {
 			if (Input::has($feature->id)) {

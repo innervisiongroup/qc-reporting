@@ -8,7 +8,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            {{ Form::open(['route'=>'report.store']) }}
+            {{ Form::open(['route'=>'report.store', 'files'=>true]) }}
                 {{ Form::hidden('project_id', $project->id) }}
                 <div class="row">
                     <div class="col-md-5">
@@ -83,9 +83,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6">
                         {{ Form::label('note', 'Add a note to your report') }}
                         {{ Form::textarea('note', null, ['class'=>'form-control']) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ Form::label('images[]', 'Select images to upload') }}
+                        {{ Form::file('images[]', ['multiple'=>true]) }}
                     </div>
                 </div>
                 <hr>

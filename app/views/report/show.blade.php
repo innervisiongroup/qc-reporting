@@ -71,11 +71,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6">
                     <blockquote>
                         <p>{{ $report->note }}</p>
                         <footer>{{ $report->user->name }}</footer>
                     </blockquote>
+                </div>
+                <div class="col-md-6">
+                    @if (count($report->images))
+                        <div class="row">
+                            @foreach ($report->images as $image)
+                                <div class="col-md-4">
+                                    <a href="{{ URL::to('uploads/'.$image->filename) }}" target="_blank">
+                                        <img src="/uploads/{{$image->filename}}" alt="" style="max-width:100%">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row">

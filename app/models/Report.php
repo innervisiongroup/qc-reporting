@@ -18,6 +18,11 @@ class Report extends \Eloquent {
         return $this->hasMany('Test');
     }
 
+    public function images()
+    {
+        return $this->hasMany('Image');
+    }
+
     
 
 }
