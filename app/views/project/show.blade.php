@@ -29,7 +29,7 @@
                                 @if (!$project->is_mobile)
                                     {{ Form::select('os', ['Mac OS'=>'Mac OS', 'Windows 7'=>'Windows 7', 'Windows 8'=>'Windows 8', 'Ubuntu'=>'Ubuntu', 'Debian'=>'Debian'], null, ['class'=>'form-control']) }}
                                 @else
-                                    {{ Form::select('os', ['Android 4.4'=>'Android 4.4', 'Android 4.3'=>'Android 4.3', 'Android 4.2'=>'Android 4.2'], null, ['class'=>'form-control']) }}
+                                    {{ Form::select('os', ['iOS 8'=>'iOS 8', 'iOS 7'=>'iOS 7', 'Android 4.4'=>'Android 4.4', 'Android 4.3'=>'Android 4.3', 'Android 4.2'=>'Android 4.2'], null, ['class'=>'form-control']) }}
                                 @endif
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                         <th>Fonctionnality to Test</th>
                                         @if ($project->is_mobile)
                                             <th>
-                                                Android Phone
+                                                Mobile Phone
                                             </th>
                                         @else
                                             @foreach (Platform::all() as $platform)
@@ -65,8 +65,8 @@
                                             <th scope="row">{{ $feature->name }}</th>
                                             @if ($project->is_mobile)
                                                 <td>
-                                                    {{ Form::checkbox($feature->id.'[]', 'android', false, ['id'=>$feature->id.'android']) }}
-                                                    <label for="{{$feature->id}}android" class="check-box"></label>
+                                                    {{ Form::checkbox($feature->id.'[]', 'mobile', false, ['id'=>$feature->id.'mobile']) }}
+                                                    <label for="{{$feature->id}}mobile" class="check-box"></label>
                                                 </td>
                                             @else
                                                 @foreach (Platform::all() as $platform)

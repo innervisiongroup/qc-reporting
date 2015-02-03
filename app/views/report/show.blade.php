@@ -32,7 +32,7 @@
                                 <th>Fonctionnality to Test</th>
                                 @if ($report->project->is_mobile)
                                     <th>
-                                        Android Phone
+                                        Mobile Phone
                                     </th>
                                 @else
                                     @foreach (Platform::all() as $platform)
@@ -47,11 +47,11 @@
                                 @if ($report->project->is_mobile)
                                     <td>
                                         @if (!is_null(Test::where('report_id', $report->id)->where('feature_id', $feature->id)->where('platform_id', 0)->first()))
-                                            {{ Form::checkbox($feature->id.'[]', 'android', true, ['id'=>$feature->id.'android',  'disabled', 'checked']) }}
+                                            {{ Form::checkbox($feature->id.'[]', 'mobile', true, ['id'=>$feature->id.'mobile',  'disabled', 'checked']) }}
                                         @else
-                                            {{ Form::checkbox($feature->id.'[]', 'android', false, ['id'=>$feature->id.'android',  'disabled', 'unchecked']) }}
+                                            {{ Form::checkbox($feature->id.'[]', 'mobile', false, ['id'=>$feature->id.'mobile',  'disabled', 'unchecked']) }}
                                         @endif
-                                        <label for="{{$feature->id}}android" class="check-box"></label>
+                                        <label for="{{$feature->id}}mobile" class="check-box"></label>
                                     </td>
                                 @else
                                     @foreach (Platform::all() as $platform)
