@@ -36,7 +36,7 @@ class ReportController extends \BaseController {
 		$report = new Report;
 		$report->project_id = $project->id;
 		$report->user_id = Auth::id();
-		$report->version_id = '';
+		$report->version_id = 0;
 		$report->platform_version = Input::get('os');
 		$report->status = 'Sent';
 		$report->note = Input::get('note');
