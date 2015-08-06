@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration {
 			$table->increments('id');
 			$table->integer('project_id');
 			$table->integer('user_id');
-			$table->integer('version_id');
+			$table->integer('version_id')->default(0);
 			$table->string('platform_version');
 			$table->string('status');
 			$table->timestamps();
