@@ -65,11 +65,7 @@ class ReportController extends \BaseController {
 					$test = new Test;
 					$test->report_id = $report->id;
 					$test->feature_id = $feature->id;
-					if $$platform_id == 'mobile') {
-						$test->platform_id = 0;
-					} else {
-						$test->platform_id = $platform_id;
-					}
+					$test->platform_id = $platform_id;
 					$test->functional = true;
 					$test->save();
 				}
