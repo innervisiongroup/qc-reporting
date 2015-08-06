@@ -14,7 +14,7 @@ class AddNoteFieldToReportTable extends Migration {
 	{
 		Schema::table('reports', function($table)
 		{
-		    $table->text('note')->after('status');
+		    $table->text('note')->nullable()->after('status');
 		});
 	}
 
